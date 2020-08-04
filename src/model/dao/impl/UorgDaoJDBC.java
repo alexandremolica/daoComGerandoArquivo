@@ -19,9 +19,6 @@ public class UorgDaoJDBC implements UorgDao {
 		this.conn = conn;
 	}
 
-
-
-
 	@Override
 	public Uorg findByUorg(String uorg) {
 		PreparedStatement st = null;

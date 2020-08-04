@@ -34,6 +34,7 @@ public class MaterialPermanente implements Serializable{
 	private String valorReavaliacao;
 	private String vidaUtil; 
 	private String codigoUg;
+	private String fabricante;
 	
 	public MaterialPermanente() {}
 
@@ -42,7 +43,7 @@ public class MaterialPermanente implements Serializable{
 			String dataTombamento, String valorBem, String formaDeAquisicao, String especificacao, String dataDevolucao,
 			String numSerie, String patrimonio, String marca, String modelo, String garantidor, String numContrato,
 			String inicioGarantia, String fimGarantia, String cpfCorresponsavel, String nomeCorresponsavel,
-			String emAlmoxarifado, String dataReavaliacao, String valorReavaliacao, String vidaUtil, String codigoUg) {
+			String emAlmoxarifado, String dataReavaliacao, String valorReavaliacao, String vidaUtil, String codigoUg, String fabricante) {
 		super();
 		this.codigoMaterial = codigoMaterial;
 		this.descricao = descricao;
@@ -72,6 +73,7 @@ public class MaterialPermanente implements Serializable{
 		this.valorReavaliacao = valorReavaliacao;
 		this.vidaUtil = vidaUtil;
 		this.codigoUg = codigoUg;
+		this.fabricante = fabricante;
 	}
 
 	public String getCodigoMaterial() {
@@ -297,6 +299,15 @@ public class MaterialPermanente implements Serializable{
 	public void setCodigoUg(String codigoUg) {
 		this.codigoUg = codigoUg;
 	};
+
+	public String getFabricante() {
+		return fabricante;
+	}
+
+	public void setFabricante(String fabricante) {
+		this.fabricante = fabricante;
+	}
+
 	
 	@Override
 	public int hashCode() {
@@ -336,6 +347,7 @@ public class MaterialPermanente implements Serializable{
 				+ nomeCorresponsavel + ", emAlmoxarifado=" + emAlmoxarifado + ", dataReavaliacao=" + dataReavaliacao
 				+ ", valorReavaliacao=" + valorReavaliacao + ", vidaUtil=" + vidaUtil + "codigoUg="+ codigoUg ;
 	}
+
 
 
 }

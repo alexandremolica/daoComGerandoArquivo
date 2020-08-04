@@ -66,7 +66,6 @@ public class Program {
 		catch(IOException e) {
 			e.printStackTrace();
 			sc.close();
-
 		}
 		System.out.println("Quantidades de registros de Dados="+qtdLinhaDetail);
 		System.out.println("Somatorio de valor bem="+soma);
@@ -93,6 +92,7 @@ public class Program {
 		return line;
 
 	}
+	
 	public static String setDetailFileLine (MaterialPermanente mat){
 		String line;
 		line =  "D¥"
@@ -100,9 +100,32 @@ public class Program {
 		+ mat.getDescricao()+"¥" 
 		+ mat.getCodigoConta()+"¥"
 		+ mat.getEnderecoLocalizacaoMaterial()+"¥"
+		+ mat.getUorg()+"¥"
+		+ mat.getTipo()+"¥"
+		+ mat.getSituacao()+"¥"
+		+ mat.getTipoPlaqueta()+"¥"
+		+ mat.getDataTombamento()+"¥"
+		+ mat.getValorBem()+"¥"
+		+ mat.getFormaDeAquisicao()+"¥"
+		+ mat.getEspecificacao()+"¥"
+		+ mat.getDataDevolucao()+"¥"
+		+ mat.getNumSerie()+"¥"
+		+ mat.getPatrimonio()+"¥"
+		+ mat.getMarca()+"¥"
+		+ mat.getModelo()+"¥"
+		+ mat.getFabricante()+"¥"
+		+ mat.getGarantidor()+"¥"
+		+ mat.getNumContrato()+"¥"
+		+ mat.getInicioGarantia()+"¥"
+		+ mat.getFimGarantia()+"¥"
+		+ mat.getCpfCorresponsavel()+"¥"
+		+ mat.getNomeCorresponsavel()+"¥"
+//almoxarifado
+		+ "FALSE"+"¥"
 		+"£" ;
 		return line;
 	}
+	
 	public static String setTrailFileLine (long qtd, long soma){
 		String line;
 		GregorianCalendar calendario = new GregorianCalendar();
