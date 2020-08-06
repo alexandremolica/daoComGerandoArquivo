@@ -41,7 +41,7 @@ public class Program {
 
 		System.out.println("====  Gerar Arquivo ====");
 
-		String path = "c:\\temp\\outTest.txt";
+		String path = "c:\\temp\\SIGINPIoutXXXXX.csv";
 		
 		try(BufferedWriter bw = new BufferedWriter(new FileWriter(path))){
 			
@@ -96,30 +96,30 @@ public class Program {
 	public static String setDetailFileLine (MaterialPermanente mat){
 		String line;
 		line =  "Dе"
-		+ mat.getCodigoMaterial()+"е"
-		+ mat.getDescricao()+"е" 
-		+ mat.getCodigoConta()+"е"
-		+ mat.getEnderecoLocalizacaoMaterial()+"е"
-		+ mat.getUorg()+"е"
-		+ mat.getTipo()+"е"
-		+ mat.getSituacao()+"е"
-		+ mat.getTipoPlaqueta()+"е"
-		+ mat.getDataTombamento()+"е"
-		+ mat.getValorBem()+"е"
-		+ mat.getFormaDeAquisicao()+"е"
-		+ mat.getEspecificacao()+"е"
-		+ mat.getDataDevolucao()+"е"
-		+ mat.getNumSerie()+"е"
-		+ mat.getPatrimonio()+"е"
-		+ mat.getMarca()+"е"
-		+ mat.getModelo()+"е"
-		+ mat.getFabricante()+"е"
-		+ mat.getGarantidor()+"е"
-		+ mat.getNumContrato()+"е"
-		+ mat.getInicioGarantia()+"е"
-		+ mat.getFimGarantia()+"е"
-		+ mat.getCpfCorresponsavel()+"е"
-		+ mat.getNomeCorresponsavel()+"е"
+		+ convertNotNull(mat.getCodigoMaterial())+"е"
+		+ convertNotNull(mat.getDescricao())+"е" 
+		+ convertNotNull(mat.getCodigoConta())+"е"
+		+ convertNotNull(mat.getEnderecoLocalizacaoMaterial())+"е"
+		+ convertNotNull(mat.getUorg())+"е"
+		+ convertNotNull(mat.getTipo())+"е"
+		+ convertNotNull(mat.getSituacao())+"е"
+		+ convertNotNull(mat.getTipoPlaqueta())+"е"
+		+ convertNotNull(mat.getDataTombamento())+"е"
+		+ convertNotNull(mat.getValorBem())+"е"
+		+ convertNotNull(mat.getFormaDeAquisicao())+"е"
+		+ convertNotNull(mat.getEspecificacao())+"е"
+		+ convertNotNull(mat.getDataDevolucao())+"е"
+		+ convertNotNull(mat.getNumSerie())+"е"
+		+ convertNotNull(mat.getPatrimonio())+"е"
+		+ convertNotNull(mat.getMarca())+"е"
+		+ convertNotNull(mat.getModelo())+"е"
+		+ convertNotNull(mat.getFabricante())+"е"
+		+ convertNotNull(mat.getGarantidor())+"е"
+		+ convertNotNull(mat.getNumContrato())+"е"
+		+ convertNotNull(mat.getInicioGarantia())+"е"
+		+ convertNotNull(mat.getFimGarantia())+"е"
+		+ convertNotNull(mat.getCpfCorresponsavel())+"е"
+		+ convertNotNull(mat.getNomeCorresponsavel())+"е"
 //almoxarifado
 		+ "FALSE"+"е"
 		+"г" ;
@@ -139,6 +139,11 @@ public class Program {
 		+"FIMег";
 		
 		return line;
+	}
+	
+	private static String convertNotNull(String atributo) {
+		return atributo != null ? atributo : "";
+		
 	}
 
 }

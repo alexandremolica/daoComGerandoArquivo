@@ -84,6 +84,4 @@ public class EspecificacaoMaterialPermanente implements Serializable{
 				+ ", serie=" + serie;
 	}
 	
-	
-	
 }

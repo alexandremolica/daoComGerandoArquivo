@@ -29,7 +29,7 @@ public class EspecificacaoMaterialPermanenteDaoJDBC implements EspecificacaoMate
 		String modelo = null;
 		String marca = null;
 		String serie = null;
-		String especificacao = null;
+		String especificacao = "";
 		
 		List<EspecificacaoMaterialPermanente> list = new ArrayList<>();
 		
@@ -40,7 +40,6 @@ public class EspecificacaoMaterialPermanenteDaoJDBC implements EspecificacaoMate
 					"SELECT   DS_COMPLETA\r\n" + 
 							"       , CD_CARACTERISTICA\r\n" + 
 							"       , NM_CARACTERISTICA\r\n" + 
-							"       , DS_CAR_DATE\r\n" + 
 							"       , DS_CAR_NUMBER\r\n" + 
 							"       , NM_CARACT_TAB\r\n" + 
 							"       , DS_CAR_CHAR\r\n" + 
@@ -54,45 +53,51 @@ public class EspecificacaoMaterialPermanenteDaoJDBC implements EspecificacaoMate
 
 			rs = st.executeQuery();
 
+	String teste;
+			String auxiliar;
+			
 			while (rs.next()) {
-		
-				if (rs.getString("NM_CARACTERISTICA") == "MARCA") {
-					marca =  rs.getString("NM_CARACTERISTICA")+" "
-							+ rs.getString("NM_CARACT_TAB")+" "
-							+ rs.getString("DS_CAR_CHAR")+" "
-							+ rs.getString("DS_CAR_NUMBER")+" "
-							+ rs.getString("DS_CAR_DATE");
-				}else if (rs.getString("NM_CARACTERISTICA") == "SERIE") {
-					serie =  rs.getString("NM_CARACTERISTICA")+" "
-							+ rs.getString("NM_CARACT_TAB")+" "
-							+ rs.getString("DS_CAR_CHAR")+" "
-							+ rs.getString("DS_CAR_NUMBER")+" "
-							+ rs.getString("DS_CAR_DATE");
+				auxiliar = "";
+				
+				if (rs.getString("NM_CARACT_TAB") != null) {
+					auxiliar = rs.getString("NM_CARACT_TAB")+" ";
+				}
+				/*
+				if (rs.getString("DS_CAR_CHAR")!= null) {
+					auxiliar += rs.getString("DS_CAR_CHAR")+" ";
+				}
+				*/
+				if (rs.getString("DS_CAR_NUMBER") != null) {
+					auxiliar += rs.getString("DS_CAR_CHAR")+" ";
+				}
+				if(!auxiliar.equals("") ){
+					especificacao += rs.getString("NM_CARACTERISTICA") + " "+ auxiliar+ " ";
+				}
+
+				
+				if (rs.getString("NM_CARACTERISTICA").contentEquals("MARCA") && !auxiliar.equals("") ) {
+					marca =  rs.getString("NM_CARACTERISTICA") +" " +auxiliar; 
+
+				}else if (rs.getString("NM_CARACTERISTICA").contentEquals("SERIE") && !auxiliar.equals("") ) {
+					serie =  rs.getString("NM_CARACTERISTICA") +" " +auxiliar; 
+
 					
-				}else if (rs.getString("NM_CARACTERISTICA") == "MODELO") {
-					modelo =  rs.getString("NM_CARACTERISTICA")+" "
-							+ rs.getString("NM_CARACT_TAB")+" "
-							+ rs.getString("DS_CAR_CHAR")+" "
-							+ rs.getString("DS_CAR_NUMBER")+" "
-							+ rs.getString("DS_CAR_DATE");
+				}else if (rs.getString("NM_CARACTERISTICA").contentEquals("MODELO") && !auxiliar.equals("") ) {
+					modelo =  rs.getString("NM_CARACTERISTICA") +" " +auxiliar; 
 					
 				};
-				especificacao =  rs.getString("NM_CARACTERISTICA")+" "
-								+ rs.getString("NM_CARACT_TAB")+" "
-								+ rs.getString("DS_CAR_CHAR")+" "
-								+ rs.getString("DS_CAR_NUMBER")+" "
-								+ rs.getString("DS_CAR_DATE");
-						
+
+					
 			}
-			if (especificacao == null) {
-				especificacao = "Não tem especificacao";
+			if (especificacao.equals("") ) {
+				especificacao = "SEM ESPECIFICACAO - CAMPO OBRIGARTORIO";
 			}
 
 			EspecificacaoMaterialPermanente obj = instantiateEspecificacaoMaterialPermanente( marca, serie, modelo ,especificacao );
 			return obj;
 			
 		} catch (SQLException e) {
-			throw new DbException("EspecificacaoMaterialPermanenteDaoJDBC-" +e.getMessage() );
+			throw new DbException(e.getMessage() );
 		} finally {
 			DB.closeResultSet(rs);
 			DB.closeStatement(st);
@@ -110,6 +115,5 @@ public class EspecificacaoMaterialPermanenteDaoJDBC implements EspecificacaoMate
 		
 		return obj;
 	}
-
 	
 }

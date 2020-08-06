@@ -65,7 +65,6 @@ public class MaterialPermanenteDaoJDBC implements MaterialPermanenteDao {
 					"        ,TO_CHAR(BP_ENTRADA.DT_CONTABIL, 'DD')||TO_CHAR(BP_ENTRADA.DT_CONTABIL, 'MM')||TO_CHAR(BP_ENTRADA.DT_CONTABIL,'YYYY') DATA_TOMBAMENTO\r\n" + 
 					"        ,BP_BEM.VL_UNITARIO\r\n" + 
 					"        ,'NAO ENCONTRADO ???????   'FORMA_AQUISICAO\r\n" + 
-					"        ,'ESPECIFICACAO TEM QUE FAZER FORA SQL TRAZ MAIS 1 LINHA ????' ESPECIFICACAO\r\n" + 
 					"        ,BP_BEM.CD_BEM_PERM PATRIMONIO\r\n" + 
 					"        ,BP_BEM.CD_ORGAO\r\n" + 
 					"        ,CR_UG.CD_UG\r\n" + 
@@ -146,7 +145,6 @@ public class MaterialPermanenteDaoJDBC implements MaterialPermanenteDao {
 					"        ,TO_CHAR(BP_ENTRADA.DT_CONTABIL, 'DD')||TO_CHAR(BP_ENTRADA.DT_CONTABIL, 'MM')||TO_CHAR(BP_ENTRADA.DT_CONTABIL,'YYYY') DATA_TOMBAMENTO\r\n" + 
 					"        ,BP_BEM.VL_UNITARIO\r\n" + 
 					"        ,BP_ENT_DOC.NR_DOCUMENTO||'-'||CR_TP_DOCUMENTO.NM_TP_DOCUMENTO FORMA_AQUISICAO\r\n" + 
-					"        ,'ESPECIFICACAO TEM QUE FAZER FORA SQL TRAZ MAIS 1 LINHA' ESPECIFICACAO\r\n" + 
 					"        ,BP_BEM.CD_BEM_PERM PATRIMONIO\r\n" + 
 					"        ,BP_BEM.CD_ORGAO\r\n" + 
 					"        ,CR_UG.CD_UG\r\n" + 
@@ -214,7 +212,7 @@ public class MaterialPermanenteDaoJDBC implements MaterialPermanenteDao {
 			throw new DbException(e.getMessage());
 		} finally {
 			DB.closeResultSet(rs);
-			DB.closeStatement(st);
+			DB.closeStatement(st);	
 			DB.closeConnection();
 		}
 	}	
@@ -235,7 +233,6 @@ public class MaterialPermanenteDaoJDBC implements MaterialPermanenteDao {
 		obj.setDataTombamento(rs.getString("DATA_TOMBAMENTO"));
 		obj.setValorBem(rs.getString("VL_UNITARIO"));
 		obj.setFormaDeAquisicao(rs.getString("FORMA_AQUISICAO"));
-		obj.setEspecificacao(rs.getString("ESPECIFICACAO"));
 		obj.setPatrimonio(rs.getString("PATRIMONIO"));
 		obj.setCodigoUg(rs.getString("CD_UG"));
 		//tratando especificacao, marca, serie e modelo
@@ -246,10 +243,6 @@ public class MaterialPermanenteDaoJDBC implements MaterialPermanenteDao {
 		obj.setNumSerie(objEspec.getSerie());
 		
 		return obj;
-	}
-	
-	private List<String> getEspecificacao(String sqBemPerm, String cdOrgao ) {
-		return null;
 	}
 	
 }
