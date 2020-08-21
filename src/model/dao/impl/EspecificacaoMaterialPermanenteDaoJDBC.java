@@ -53,7 +53,6 @@ public class EspecificacaoMaterialPermanenteDaoJDBC implements EspecificacaoMate
 
 			rs = st.executeQuery();
 
-	String teste;
 			String auxiliar;
 			
 			while (rs.next()) {

@@ -39,7 +39,7 @@ public class Program {
 		}		
 
 
-		System.out.println("====  Gerar Arquivo ====");
+		System.out.println("==== GERAR ARQUIVO LAYOUT ====");
 
 		String path = "c:\\temp\\SIGINPIoutXXXXX.csv";
 		
@@ -69,10 +69,44 @@ public class Program {
 		}
 		System.out.println("Quantidades de registros de Dados="+qtdLinhaDetail);
 		System.out.println("Somatorio de valor bem="+soma);
-		System.out.println("==== FIM ARQUIVO ====");
-		System.out.println("==== SUCESSO ====");
+		System.out.println("==== FIM ARQUIVO LAYOUT ====");
+		
+		///////////////////////////////////////////////////////////////////////////////////
+		// Parte feita com linha de titulo para conferencia no departamento de patrimonion
+		///////////////////////////////////////////////////////////////////////////////////
+		System.out.println();
+		System.out.println("== GERAR ARQUIVO COM TITULOS PARA VISUALIZACAO ==");
+		
+		String path2 = "c:\\temp\\Extracao-com-titutlo-SIGINPI-1.csv";
+		
+		try(BufferedWriter bw = new BufferedWriter(new FileWriter(path2))){
+			//Linha de titulos do arquivo
+			bw.write(
+					"D¥CodigoMaterial¥Descricao¥CodigoConta¥Endereco¥Uorg¥Tipo¥Situacao¥TipoPlaqueta¥DataTombamento¥ValorBem¥"
+					+"FormaDeAquisicao¥Especificacao¥DataDevolucao¥Serie¥Patrimonio¥Marca¥Modelo¥Fabricante¥Garantidor¥"
+					+"Contrato¥InicioGarantia¥FimGarantia¥CpfCorresponsavel¥NomeCorresponsavel¥"
+					+"almoxarifado¥£" 		
+					);
+			bw.newLine();
+			
+			//Linha de dados
+			for(MaterialPermanente obj : list) {
+				bw.write(setDetailFileLine(obj));
+				bw.newLine();
+			}
 
+			
+		}
+		catch(IOException e) {
+			e.printStackTrace();
+			sc.close();
+		}
+		System.out.println("==== FIM ARQUIVO PARA VISUALIZACAO ====");
+
+		/////////////////
+		
 		sc.close();
+		System.out.println("==== SUCESSO ====");
 
 	}
 	
@@ -123,6 +157,11 @@ public class Program {
 //almoxarifado
 		+ "FALSE"+"¥"
 		+"£" ;
+		
+		line = line.replaceAll("\r", "");
+		line = line.replaceAll("\t", "");
+		line = line.replaceAll("\n", "");
+				
 		return line;
 	}
 	
